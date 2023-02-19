@@ -1,0 +1,33 @@
+@import "../../styles/variables";
+
+.spinner-overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-overlay;
+}
+
+.spinner-container {
+  display: inline-block;
+  width: 100px;
+  height: 50px;
+  //border: 3px solid rgba(195, 195, 195, 0.6);
+  border: 3px solid $color-mintGreen;
+  border-radius: 50%;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @-webkit-keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}

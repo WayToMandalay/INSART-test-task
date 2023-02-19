@@ -1,9 +1,10 @@
 import './footer.scss'
 
 const Footer = () => {
-
     return (
-        <footer>Footer</footer>
+        <footer className={'footer'}>
+            <p>© 2023 Fincore Inc. All rights reserved.</p>
+        </footer>
     )
 }
 

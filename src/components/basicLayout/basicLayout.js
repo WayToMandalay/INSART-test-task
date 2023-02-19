@@ -1,13 +1,12 @@
 import Header from '../header/header'
 import Footer from '../footer/footer'
 
-const BasicLayout = ({children}) => {
-
+const BasicLayout = ({ children }) => {
     return (
         <div className={'basicLayout'}>
-            <Header/>
+            <Header />
             {children}
-            <Footer/>
+            <Footer />
         </div>
     )
 }

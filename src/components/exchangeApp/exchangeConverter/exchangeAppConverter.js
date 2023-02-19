@@ -1,25 +1,26 @@
 import './exchangeAppConverter.scss'
-import {useEffect, useRef, useState} from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Dropdown from '../../dropDown/dropDown'
-import {connect} from 'react-redux'
-import {roundValue} from '../../../helpers'
+import { connect } from 'react-redux'
+import { roundValue, validateInput } from '../../../helpers'
+import ConvertButton from '../../convertButton/convertButton'
+import clsx from 'clsx'
 
-const ExchangeAppConverter = ({data}) => {
-
-    const [buyInput, setBuyInput] = useState(0)
-    // const [saleInput, setSaleInput] = useState(0)
-    const [amount, setAmount] = useState(0)
+const ExchangeAppConverter = ({ data }) => {
+    const [buyInput, setBuyInput] = useState('')
+    const [amount, setAmount] = useState('')
     const [from, setFrom] = useState('UAH')
     const [to, setTo] = useState('USD')
     const [options, setOptions] = useState([])
-    const [error, setError] = useState(null)
+    const [error, setError] = useState(false)
     const amountInput = useRef(null)
 
-
     useEffect(() => {
-        console.log(data)
-        const dropOptions = data.map(el => ({value: el.ccy, title: el.ccy.toUpperCase()}))
-        dropOptions.push({value: 'UAH', title: 'UAH'})
+        const dropOptions = data.map((el) => ({
+            value: el.ccy,
+            title: el.ccy.toUpperCase(),
+        }))
+        dropOptions.push({ value: 'UAH', title: 'UAH' })
         setOptions(dropOptions)
     }, [])
 
@@ -27,96 +28,97 @@ const ExchangeAppConverter = ({data}) => {
         amountInput.current.value = amount
     }, [amount])
 
-    // useEffect(() => {
-    //     console.log(to)
-    //     console.log(from)
-    // }, [to, from])
+    useEffect(() => {
+        if (validateInput(buyInput) || buyInput === '') {
+            setError((prev) => false)
+        } else {
+            setError((prev) => true)
+        }
+    }, [buyInput])
 
     function flip() {
-        const temp = {dropV: from, value: +amount || 0}
+        const temp = { dropValue: from, value: amount || '' }
 
-        setFrom(prev => to)
-        setTo(prev => temp.dropV)
-        setBuyInput(prev => temp.value)
-        setAmount(prev => 'Hit Convert')
+        setFrom((prev) => to)
+        setTo((prev) => temp.dropValue)
+        setBuyInput((prev) => temp.value)
+        amountInput.current.value = ''
     }
 
+    //Todo improve convert func
     function convert() {
-        console.log(from)
         if (from === to) {
-            setAmount(prev => 'error')
-            setError('Please choose different currency')
+            setAmount((prev) => 'N/A')
+            setError(true)
             return
         }
-        setError(null)
-
+        setError(false)
 
         if (from === 'UAH') {
-            const saleRate = +data.filter(el => el.ccy === to)[0].sale
-            setAmount(prev => roundValue(buyInput / saleRate))
+            const saleRate = +data.filter((el) => el.ccy === to)[0].sale
+            setAmount((prev) => roundValue(+buyInput / saleRate))
         } else if (to === 'UAH') {
-            const buyRate = +data.filter(el => el.ccy === from)[0].buy
-            setAmount(prev => roundValue(buyInput * buyRate))
-        }
-        else {
-            const saleRate = +data.filter(el => el.ccy === to)[0].sale
-            const buyRate = +data.filter(el => el.ccy === from)[0].buy
+            const buyRate = +data.filter((el) => el.ccy === from)[0].buy
+            setAmount((prev) => roundValue(+buyInput * buyRate))
+        } else {
+            const saleRate = +data.filter((el) => el.ccy === to)[0].sale
+            const buyRate = +data.filter((el) => el.ccy === from)[0].buy
             const calcRate = buyRate / saleRate
-            setAmount(prev => roundValue(buyInput * calcRate))
+            setAmount((prev) => roundValue(+buyInput * calcRate))
         }
-
     }
 
     return (
         <div className={'exchangeAppConverter__container'}>
-            <div className="exchangeAppConverter__top">
-                <div className="exchangeAppConverter__input">
-                    <h3>Change</h3>
+            <div className="exchangeAppConverter__input">
+                <h3 className="exchangeAppConverter__title">Change</h3>
+                <div className="exchangeAppConverter__input-block">
                     <input
                         value={buyInput}
-                        min={0}
-                        type={'number'}
-                        placeholder="Enter the amount"
-                        onChange={(e) => setBuyInput(+e.target.value)} />
-                </div>
-                <div className="exchangeAppConverter__middle">
-                    <h3>From</h3>
-
-                    <Dropdown options={options}
-                              onChange={setFrom}
-                              value={from} placeholder="From" />
-                </div>
-                <div className="switch">
-                    <button onClick={flip}>switch</button>
-                </div>
-                <div className="exchangeAppConverter__input">
-                    <h3>Amount</h3>
-                    <input
-                        ref={amountInput}
-                        disabled/>
-                </div>
-                <div className="right">
-                    <h3>To</h3>
-
-                    <Dropdown options={options}
-                              onChange={setTo}
-                              value={to} placeholder="To" />
+                        placeholder={'Amount'}
+                        onChange={(e) => setBuyInput(e.target.value)}
+                        className={clsx('simpleInput', error && 'isInvalid')}
+                    />
+                    <Dropdown
+                        options={options}
+                        onChange={setFrom}
+                        value={from}
+                    />
                 </div>
             </div>
-            <div className="exchangeAppConverter__bottom">
-                <div className="exchangeAppConverter__result">
-                    <button onClick={convert}>Convert</button>
-                    {error ? <div>{error}</div> : <div>{amount}</div>}
 
+            <div onClick={flip} className="exchangeAppConverter-switch" />
 
+            <div className="exchangeAppConverter__input">
+                <h3 className="exchangeAppConverter__title">Get</h3>
+                <div className="exchangeAppConverter__input-block">
+                    <input
+                        className={'simpleInput'}
+                        ref={amountInput}
+                        disabled
+                    />
+                    <Dropdown
+                        options={options}
+                        onChange={setTo}
+                        value={to}
+                        placeholder="To"
+                    />
+                </div>
+            </div>
+
+            <div className="exchangeAppConverter__convert">
+                <div className="exchangeAppConverter__convert-btn">
+                    <ConvertButton disabled={error} func={convert}>
+                        Convert
+                    </ConvertButton>
                 </div>
             </div>
         </div>
     )
 }
 
-const mapStateToProps = state => ({
-    data: state.currency.data
+const mapStateToProps = (state) => ({
+    data: state.currency.data,
 })
 
 export default connect(mapStateToProps)(ExchangeAppConverter)

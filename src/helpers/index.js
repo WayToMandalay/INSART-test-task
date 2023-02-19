@@ -1,7 +1,7 @@
-import {useEffect} from 'react'
+import { useEffect } from 'react'
 
 export function roundValue(str) {
-    return Math.round(Number(str) * 100) / 100
+    return +Math.round(Number(str) * 100) / 100
 }
 
 export function useOutsideAlerter(ref, callback) {
@@ -17,4 +17,9 @@ export function useOutsideAlerter(ref, callback) {
             document.removeEventListener('click', handleClickOutside)
         }
     }, [ref])
+}
+
+export function validateInput(str) {
+    if (typeof str === 'number') return true
+    return !isNaN(str) && !isNaN(parseFloat(str))
 }

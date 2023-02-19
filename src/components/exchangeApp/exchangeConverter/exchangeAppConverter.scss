@@ -1,11 +1,24 @@
 @import "../../../styles/variables";
+@import "../../../styles/extentions";
+@import "../../../styles/mixins";
 
 .exchangeAppConverter {
 
 
   &__container {
+    margin-top: 40px;
+    margin-bottom: 32px;
     display: flex;
     flex-direction: column;
+
+    @include breakpoint-min(sm) {
+      margin-top: 24px;
+      margin-bottom: 24px;
+    }
+  }
+
+  &__input {
+
   }
 
   &__top {
@@ -17,5 +30,37 @@
     margin-top: 30px;
     display: flex;
     justify-content: center;
+  }
+
+  &-switch {
+    @extend %bg;
+    cursor: pointer;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 24px 0;
+    background-image: url('../../../assets/icons/switch.svg');
+    @include breakpoint-min(sm) {
+      margin: 16px 0;
+    }
+  }
+
+  &__input-block {
+    display: flex;
+    width: 250px;
+    column-gap: 16px;
+  }
+
+  &__title {
+    margin-bottom: 16px;
+  }
+
+  &__convert {
+    margin-top: 32px;
+
+    &-btn {
+      width: 100%;
+    }
   }
 }

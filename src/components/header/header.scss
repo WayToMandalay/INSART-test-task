@@ -1,6 +1,24 @@
 @import "../../styles/variables";
+@import "../../styles/extentions";
+@import "../../styles/mixins";
 
-header {
+.header {
   height: 100px;
-  background-color: $color-grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 100px;
+  flex-shrink: 0;
+
+  &-logo {
+    @extend %bg;
+    background-image: url('./../../assets/icons/logo.png');
+    width: 133px;
+    height: 37px;
+
+    @include breakpoint-min(sm) {
+      width: 144px;
+      height: 40px;
+    }
+  }
 }

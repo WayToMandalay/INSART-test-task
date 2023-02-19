@@ -1,10 +1,9 @@
-import {useEffect, useRef, useState} from 'react'
+import { useEffect, useRef, useState } from 'react'
 import clsx from 'clsx'
 import './dropDown.scss'
-import {useOutsideAlerter} from '../../helpers'
+import { useOutsideAlerter } from '../../helpers'
 
-const Dropdown = ({options, value, onChange = () => {}}) => {
-
+const Dropdown = ({ options, value, onChange = () => {} }) => {
     const [answer, setAnswer] = useState(value)
     const [showDropdown, setShowDropdown] = useState(false)
     const selectWrapper = useRef(null)
@@ -12,7 +11,6 @@ const Dropdown = ({options, value, onChange = () => {}}) => {
     useEffect(() => {
         selectValue(value)
     }, [value])
-
 
     function selectValue(e) {
         onChange(e)
@@ -24,20 +22,34 @@ const Dropdown = ({options, value, onChange = () => {}}) => {
         setShowDropdown(false)
     })
 
-    const optionsList = options.map(({value: v, title}, i) => v !== answer ?
-        <div key={i} className={'selectDropdownItem'} onClick={() => selectValue(v)}>{title}</div> : null
+    const optionsList = options.map(({ value: v, title }, i) =>
+        v !== answer ? (
+            <div
+                key={i}
+                className={'selectDropdownItem'}
+                onClick={() => selectValue(v)}
+            >
+                {title}
+            </div>
+        ) : null
     )
 
     return (
-        <div>
-            <div ref={selectWrapper} className={clsx('select')} onClick={() => setShowDropdown(!showDropdown)}>
-                {/*<div className={clsx(styles.selectLabel, {[styles.selectLabelFilled]: !!answer})}>{placeholder}</div>*/}
-                <div className={'selectValue'}>{answer}</div>
-                <div className={clsx('selectDropdown', showDropdown && 'selectDropdownActive')}>
-                    {optionsList}
-                </div>
+        <div
+            ref={selectWrapper}
+            className={clsx('select', showDropdown && 'selectActive')}
+            onClick={() => setShowDropdown(!showDropdown)}
+        >
+            {/*<div className={clsx(styles.selectLabel, {[styles.selectLabelFilled]: !!answer})}>{placeholder}</div>*/}
+            <div className={'selectValue'}>{answer}</div>
+            <div
+                className={clsx(
+                    'selectDropdown',
+                    showDropdown && 'selectDropdownActive'
+                )}
+            >
+                {optionsList}
             </div>
-            {/*{invalid && <span className={styles.error}>{error}</span>}*/}
         </div>
     )
 }

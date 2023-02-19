@@ -1,14 +1,18 @@
-$color-white: #F4F4F4;
+$color-white: #FAFAFA;
+$color-whiteTitle: #FAFAFA;
+$color-black: #1C1C1C;
 $color-grey: #616267;
-$color-black: #000000;
+$color-lightGrey: #333333;
+$color-borderLight: #D6D6D6;
+$color-borderGrey: #DCDCDC;
+$color-green: #018E4A;
+$color-mintGreen: #20C576;
 
+
+$color-overlay: rgba(0, 0, 0, 0.3);
+
+$gradient-green: linear-gradient(159.07deg, #20C576 13.85%, #E8FBFF 100%);
 
 $breakpoints: (
-        xxs: 360px,
-        xs: 375px,
-        sm: 414px,
-        md: 768px,
-        lg: 992px,
-        xl: 1366px,
-        xxl: 1920px,
+    sm: 676px,
 );

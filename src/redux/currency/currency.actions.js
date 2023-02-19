@@ -29,9 +29,24 @@ export const fetchCurrencyFailure = (message) => {
 }
 
 export const addCurrencyDataAsync = () => (dispatch) => {
-    dispatch(fetchCurrencyStart())
+    let API = process.env.REACT_APP_API_URL
 
-    const API = process.env.REACT_APP_API_URL
+    let count = localStorage.getItem('apiCount')
+
+    if (!count) {
+        localStorage.setItem('apiCount', '1')
+    }
+    count = +count + 1
+
+    if (count === 5) {
+        API = 'some dummy API'
+        localStorage.setItem('apiCount', '0')
+    }
+    else {
+        localStorage.setItem('apiCount', count.toString())
+    }
+
+    dispatch(fetchCurrencyStart())
 
     fetch(API)
         .then(res => res.json())

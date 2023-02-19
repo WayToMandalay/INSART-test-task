@@ -1,6 +1,11 @@
 @import "../../styles/variables";
 
-footer {
-  height: 100px;
-  background-color: $color-grey;
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: $color-white;
+  flex-basis: 100px;
+  flex-shrink: 0;
 }

@@ -1,26 +1,33 @@
 @import "../../styles/variables";
+@import "../../styles/extentions";
 
 .select {
   position: relative;
-  border: 1px solid $color-white;
-  background: $color-white;
+  outline: none;
+  border: 2px solid $color-borderLight;
+
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  padding: 12px 32px 12px 16px;
+  font-size: 20px;
+  max-width: 112px;
+  width: 112px;
   user-select: none;
   display: flex;
   align-items: center;
   cursor: pointer;
   color: $color-grey;
-  outline: none;
 
 
   &:after {
-    //@extend %bg;
+    @extend %bg;
     content: '';
     position: absolute;
     right: 10px;
     width: 24px;
     height: 24px;
     background-size: cover;
-    //background-image: url("../../../assets/images/chevron-down.svg");
+    background-image: url("../../assets/icons/arrowUp.svg");
     transition: transform 0.2s ease;
 
   }
@@ -65,14 +72,16 @@
   position: absolute;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   left: 0;
-  top: 100%;
+  top: calc(100% + 8px);
   width: 100%;
-  background-color: grey;
+  border-radius: 8px;
+  border: 2px solid $color-borderLight;
   opacity: 0;
   transition: visibility 0.1s ease, opacity 0.1s ease;
   z-index: 100;
-
+  background-color: $color-whiteTitle;
 
 }
 
@@ -86,11 +95,11 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  border-top: 1px solid $color-white;
-
   padding-top: 8px;
   padding-bottom: 8px;
-  color: $color-grey;
   transition: color 0.3s;
 
+  &:hover {
+    background-color: $color-borderLight;
+  }
 }

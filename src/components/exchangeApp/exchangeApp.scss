@@ -1,25 +1,102 @@
 @import "../../styles/variables";
+@import "../../styles/extentions";
+@import "../../styles/mixins";
 
 .exchangeApp {
+  background-color: $color-whiteTitle;
+  border-radius: 14px;
+  padding: 0 16px;
+  color: $color-black;
+  max-width: 640px;
   margin: 0 auto;
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 
-  &__table {
-    //display: flex;
-    //flex-direction: column;
-    background-color: $color-black;
-    color: red;
+  @include breakpoint-min(sm) {
+    width: 640px;
+  }
 
-    td {
-      width: 100px;
-      text-align: center;
-      height: 45px;
-      background-color: $color-white;
+  &-section {
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    max-width: 1280px;
+    padding: 32px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-top: 1px solid $color-lightGrey;
+    @include breakpoint-min(sm) {
+      padding: 0 32px;
     }
   }
-}
+
+
+  &-topLine {
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+    border-radius: 14px;
+    padding: 24px 0;
+
+    @include breakpoint-min(sm) {
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+  }
+
+  &-date {
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    padding-left: 32px;
+
+    &:before {
+      content: '';
+      @extend %bg;
+      background-image: url('../../assets/icons/calendar.svg');
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+  }
+  &__table {
+
+    &-item {
+
+      @include breakpoint-min(sm) {
+        display: flex;
+        align-items: center;
+        padding: 48px 0;
+        border-bottom: 1px solid $color-borderLight;
+      }
+    }
+
+      &-title {
+        margin: 24px 0;
+        @include breakpoint-min(sm) {
+          margin: 0;
+          margin-right: 24px;
+          align-self: flex-start;
+        }
+      }
+
+      &-row {
+        display: flex;
+        column-gap: 24px;
+        padding-bottom: 64px;
+        border-bottom: 1px solid $color-borderGrey;
+
+        @include breakpoint-min(sm) {
+          padding-bottom: 0;
+          border-bottom: none;
+        }
+      }
+    }
+
+  }
+
 
