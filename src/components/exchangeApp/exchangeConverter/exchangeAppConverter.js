@@ -38,7 +38,7 @@ const ExchangeAppConverter = ({data}) => {
         setFrom(prev => to)
         setTo(prev => temp.dropV)
         setBuyInput(prev => temp.value)
-        setAmount(null)
+        setAmount(prev => 'Hit Convert')
     }
 
     function convert() {
