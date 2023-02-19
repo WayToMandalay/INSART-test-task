@@ -1,0 +1,67 @@
+@import "../../styles/variables";
+
+.editableInput {
+  display: block;
+  outline: none;
+  border: none;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  background-color: transparent;
+  color: unset;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  transition: all 0.25s;
+
+  &:hover {
+    background-color: rgba($color-black, 0.1);
+  }
+
+  &:focus {
+    background-color: rgba($color-black, 0.2);
+  }
+
+  &.isValid {
+    color: yellow;
+  }
+
+  &__container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+
+    span {
+      opacity: 0;
+      user-select: none;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 15px;
+      height: 15px;
+      border: 1px solid black;
+      content: 'ss';
+    }
+
+    &:hover {
+      span {
+        opacity: 1;
+        transition: opacity 0.3s;
+      }
+      &.active {
+        span {
+          opacity: 0;
+        }
+      }
+    }
+  }
+
+  &__btnBlock {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+
+  }
+}
+
+  //return /^-?\\d/.test(value);

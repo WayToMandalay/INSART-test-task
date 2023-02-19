@@ -1,0 +1,12 @@
+@import 'variables';
+
+@mixin breakpoint-max($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: (#{map-get($breakpoints, $breakpoint) - 1px})) {
+      @content;
+    }
+  } @else {
+    @warn "No value from `#{$breakpoint}`. "
+          + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}

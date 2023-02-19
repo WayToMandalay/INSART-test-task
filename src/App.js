@@ -1,15 +1,12 @@
-import './App.scss';
-import Header from './components/Header/Header'
-import Footer from './components/Footer/Footer'
-import ExchangeAppContainer from './components/ExchangeApp/ExchangeAppContainer'
+import './styles/global.scss';
+import ExchangeAppContainer from './components/exchangeApp/exchangeAppContainer'
+import BasicLayout from './components/basicLayout/basicLayout'
 
 function App() {
   return (
-    <>
-      <Header/>
+    <BasicLayout>
       <ExchangeAppContainer/>
-      <Footer/>
-    </>
+    </BasicLayout>
   );
 }
 

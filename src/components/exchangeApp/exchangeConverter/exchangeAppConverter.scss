@@ -1,0 +1,21 @@
+@import "../../../styles/variables";
+
+.exchangeAppConverter {
+
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__top {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__bottom {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+  }
+}

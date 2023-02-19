@@ -1,0 +1,96 @@
+@import "../../styles/variables";
+
+.select {
+  position: relative;
+  border: 1px solid $color-white;
+  background: $color-white;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: $color-grey;
+  outline: none;
+
+
+  &:after {
+    //@extend %bg;
+    content: '';
+    position: absolute;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    background-size: cover;
+    //background-image: url("../../../assets/images/chevron-down.svg");
+    transition: transform 0.2s ease;
+
+  }
+
+}
+
+.selectLabel {
+  position: absolute;
+  left: 0;
+  padding: 0 8px;
+  background-color: #ffffff;
+  color: #112152;
+  font-size: 78%;
+  line-height: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+  transform: translate(8px, 0);
+}
+
+.selectLabelFilled {
+  opacity: 1;
+  transform: translate(8px, -24px);
+}
+
+.selectActive {
+  &:after {
+    transform: rotate(180deg);
+  }
+}
+
+.selectValue {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  max-width: 230px;
+}
+
+.selectDropdown {
+  visibility: hidden;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  background-color: grey;
+  opacity: 0;
+  transition: visibility 0.1s ease, opacity 0.1s ease;
+  z-index: 100;
+
+
+}
+
+.selectDropdownActive {
+  visibility: visible;
+  opacity: 1;
+}
+
+.selectDropdownItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-top: 1px solid $color-white;
+
+  padding-top: 8px;
+  padding-bottom: 8px;
+  color: $color-grey;
+  transition: color 0.3s;
+
+}

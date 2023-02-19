@@ -1,0 +1,25 @@
+@import "../../styles/variables";
+
+.exchangeApp {
+  margin: 0 auto;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__table {
+    //display: flex;
+    //flex-direction: column;
+    background-color: $color-black;
+    color: red;
+
+    td {
+      width: 100px;
+      text-align: center;
+      height: 45px;
+      background-color: $color-white;
+    }
+  }
+}
+
