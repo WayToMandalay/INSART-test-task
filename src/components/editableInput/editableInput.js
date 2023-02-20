@@ -44,10 +44,14 @@ const EditableInput = ({ basicValue, type, func, label }) => {
     }
 
     return (
-        <div className={clsx('editableInput__container', isActive && 'active')}>
+        <div
+            data-testid={'input-1'}
+            className={clsx('editableInput__container', isActive && 'active')}
+        >
             <label>
                 {label}
                 <input
+                    data-testid={'input-2'}
                     ref={inputRef}
                     onFocus={() => setIsActive(true)}
                     onChange={handleInput}

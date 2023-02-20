@@ -20,6 +20,9 @@ export function useOutsideAlerter(ref, callback) {
 }
 
 export function validateInput(str) {
-    if (typeof str === 'number') return true
-    return !isNaN(str) && !isNaN(parseFloat(str))
+    // if (str === '' || str.trim() === '') return true
+    if (!isNaN(str) && !isNaN(parseFloat(str)) && +str > 0) return true
+
+    // if (typeof str === 'number' && str > 0) return true
+    return false
 }

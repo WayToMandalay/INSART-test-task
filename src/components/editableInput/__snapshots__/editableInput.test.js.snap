@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="editableInput__container"
+  data-testid="input-1"
+>
+  <label>
+    Sale
+    <input
+      className="editableInput"
+      data-testid="input-2"
+      defaultValue={39.2}
+      onChange={[Function]}
+      onFocus={[Function]}
+    />
+    <span />
+  </label>
+</div>
+`;

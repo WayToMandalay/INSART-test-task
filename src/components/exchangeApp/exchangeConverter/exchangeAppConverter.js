@@ -85,6 +85,11 @@ const ExchangeAppConverter = ({ data }) => {
                         value={from}
                     />
                 </div>
+                {error && (
+                    <span className={'exchangeAppConverter__error-span'}>
+                        Please enter a valid number
+                    </span>
+                )}
             </div>
 
             <div onClick={flip} className="exchangeAppConverter-switch" />

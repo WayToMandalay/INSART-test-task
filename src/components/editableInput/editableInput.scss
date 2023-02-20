@@ -21,7 +21,7 @@
   }
 
   &:hover {
-    background-color: rgba($color-black, 0.1);
+    border-color: $color-borderDarker;
   }
 
   &:focus {
@@ -46,13 +46,14 @@
       width: 24px;
       height: 24px;
       background-image: url('../../assets/icons/pen.svg');
-
+      transition: opacity 0.3s;
+      cursor: inherit;
     }
 
     &:hover {
       span {
         opacity: 1;
-        transition: opacity 0.3s;
+
       }
       &.active {
         span {

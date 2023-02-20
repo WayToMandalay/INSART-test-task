@@ -63,4 +63,9 @@
       width: 100%;
     }
   }
+
+  &__error-span {
+    font-size: 12px;
+    color: $color-red;
+  }
 }
